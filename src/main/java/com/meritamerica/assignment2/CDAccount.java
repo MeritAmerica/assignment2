@@ -2,52 +2,42 @@ package com.meritamerica.assignment2;
 
 import java.util.Date;
 
-public class CDAccount{
-	private double balance;
-	private double interestRate;
-	private int term;
-	private int startDate; 
-	private long accountNumber;
-
+public class CDAccount {
 	
-	public CDAccount(CDOffering offering, double openingBalance) {
-		this.CDOffering = offering;
-		this.openingBalance = openingBalance;
+	CDOffering offering;
+	Date date;
+	private double balance;
+	private long accountNumber;
 		
+	public CDAccount(CDOffering offering, double openBalance){
+		this.date = new Date();
+		this.offering = offering;
+		this.balance = openBalance;
+		this.accountNumber = MeritBank.getNextAccountNumber();
 	}
 	
 	public double getBalance() {
-	return this.balance;	
+		return balance;
 	}
 	
 	public double getInterestRate() {
-	return this.interestRate;
+		return offering.getInterestRate();
 	}
 	
 	public int getTerm() {
-    return this.term;
+		return offering.getTerm();
 	}
 	
-	public int getStartDate() {
-		return this.startDate;
+	public java.util.Date getStartDate(){
+		return date;
 	}
 	
 	public long getAccountNumber() {
-	return this.accountNumber;
+		return accountNumber;	
 	}
 	
-	public double futureValue(int term) {
-		double futureValue;
-		if (term <= 0) {
-			System.out.println("Invalid period of time");
-			return -1;
-		} else {
-			futureValue = balance * Math.pow((1+interestRate), term);
-			return futureValue;
-		}
+	public double futureValue() {
+		return balance*Math.pow(1 + getInterestRate(), getTerm());
 	}
-	
+
 }
-
-	
-

@@ -1,60 +1,56 @@
 package com.meritamerica.assignment2;
 
 public class SavingsAccount {
-	
 	private double balance;
-	private final double INTERESTRATE = 0.01;
+	private final double INTEREST_RATE = 0.01;
+	private long acountNumber;
 	
-	public SavingsAccount(double balance) {
-		this.balance = balance;
+	public SavingsAccount(double openBalance){
+		this.balance = openBalance;
+		this.acountNumber = MeritBank.getNextAccountNumber();
 	}
 	
 	public double getBalance() {
-		return this.balance;
+		return balance;
 	}
 	
 	public double getInterestRate() {
-		return this.INTERESTRATE;
+		return INTEREST_RATE;
+	}
+	
+	public long getAccountNumber() {
+		return acountNumber;
 	}
 	
 	public boolean withdraw(double amount) {
-		if(amount <= balance && amount>0) {
-			this.balance -= amount;
-			System.out.println("You withdrew: $" + amount);
-			System.out.println("Your remaining balance is: $" + balance);
+		if(amount <= balance && amount > 0) {
+			this.balance = balance - amount;
+			System.out.println("Withdrawn amount: $" + amount);
+			System.out.println("Remaining balance: $" + balance);
 			return true;
 		}
-		System.out.println("Insufficient Funds.");
 		return false;
 	}
 	
 	public boolean deposit(double amount) {
-		if(amount > 0) {
-			this.balance += amount;
+		if (amount > 0) {
+			this.balance = balance + amount;
+			System.out.println("Deposited amount: $" + amount);
+			System.out.println("Total balance: $" + balance);
 			return true;
 		}
-		System.out.println(amount + " - Invalid amount.");
-		return false;
+		return false;	
 	}
 	
 	public double futureValue(int years) {
-		double futureValue;
-		if (years <= 0) {
-			System.out.println("Invalid period of time");
-			return -1;
-		} else {
-			futureValue = balance * Math.pow((1 + INTERESTRATE), years);
-			return futureValue;
-		}
+		return balance*Math.pow(1 + INTEREST_RATE, years);
 	}
-
 	
-	@Override
 	public String toString() {
-		return  "Savings Account Balance: $" + getBalance() + "\n" +
-				"Savings Account Interest Rate: " + INTERESTRATE + "%" + "\n" +
-				"Savings Account Balance in 3 years: $" + String.format( "%.2f", futureValue(3));
+		return "Savings Account Balance: $" + balance + "\n" + 
+				"Savings Account Interest Rate: " + INTEREST_RATE + "\n" + 
+				"Savings Account Balance in 3 years: $" + futureValue(3);
+	
 	}
 
-	
 }
