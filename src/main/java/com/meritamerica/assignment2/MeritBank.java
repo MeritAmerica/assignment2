@@ -2,11 +2,12 @@ package com.meritamerica.assignment2;
 
 public class MeritBank {
 	
+	// Allows each account holders to open CD(certificate of deposit)account start with count 0
 	private static long nextAccountNumber;
 	private static AccountHolder AccountHoldersArray[] = new AccountHolder[0];
 	private static CDOffering CDOfferingsArray[] = new CDOffering[0];
 		
-
+    // Adds new account holders one by one but the index number should  be minus one of array length
 	public static void addAccountHolder(AccountHolder accountHolder) {
 		AccountHolder[] newAccountHolderArray = new AccountHolder[AccountHoldersArray.length+1];
 		for (int i = 0; i < newAccountHolderArray.length-1; i++) {
@@ -16,10 +17,12 @@ public class MeritBank {
 		AccountHoldersArray[AccountHoldersArray.length-1] = accountHolder;
 	}
 	
+	// Returns the account holder array value of the object
 	public static AccountHolder[] getAccountHolders() {
 		return AccountHoldersArray;
 	}
 
+	// Returns the CD offering array value of the object
 	public static CDOffering[] getCDOfferings() {
 		return CDOfferingsArray;
 	}
@@ -69,6 +72,7 @@ public class MeritBank {
 		return nextAccountNumber += 1;
 	}
 
+	// This method returns account holder's total balance  
 	public static double totalBalances() {
 		double total = 0.0;
 		for(AccountHolder accounts : AccountHoldersArray) {
@@ -78,7 +82,10 @@ public class MeritBank {
 		return total;
 		
 	}
-
+	
+	/* This method is to calculate the future balance considering present value, interest rate and term 
+	 * Returns the balance value after computation.
+	 */
 	public static double futureValue(double presentValue, double interestRate, int term) {
 		double fValue = presentValue*Math.pow(1 + interestRate,  term);
 		return fValue;
