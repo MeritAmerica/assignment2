@@ -1,4 +1,9 @@
 package com.meritamerica.assignment2;
+/**
+ * This class holds and calculates all the parameters that are includes in  the CheckingAccount of MeritAmericaBank
+ * @author ChrisJohnson
+ *
+ */
 
 public class CheckingAccount {
 	

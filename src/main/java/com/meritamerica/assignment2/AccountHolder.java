@@ -1,7 +1,13 @@
 package com.meritamerica.assignment2;
 
+/**
+ * This class used to add a checking and saving account by validating the aggregate account balance 
+   and  CDAccount to the account holder 
+ * @author ChrisJohnson
+ * 
+ */
+
 public class AccountHolder {
-	
 	// Class variables
 	private String firstName;
 	private String middleName;
@@ -10,8 +16,15 @@ public class AccountHolder {
 	CheckingAccount[] checkingArray = new CheckingAccount[0];
 	SavingsAccount[] savingsArray = new SavingsAccount[0];
 	CDAccount[] cdAccountArray = new CDAccount[0];
+
+/**
+ * This constructs account holder's attributes
+ * @param first the first name of the account holder
+ * @param middle the middle name of the account holder
+ * @param last the last name of the account holder
+ * @param ssn the social security number of the account holder
+ */
 	
-	// Constructor for an account holder
 	public AccountHolder(String first, String middle, String last, String ssn) {
 		this.firstName = first;
 		this.middleName = middle;
@@ -19,9 +32,13 @@ public class AccountHolder {
 		this.ssn = ssn;
 	}
 
-	// Method to add a checking account to an account holder
-	// Validates that aggregate account balances are less than $250,000.00
-	// Takes an opening balance parameter
+/**
+ * This method validates that aggregate account balances are less than $250,000.00 
+   and add checking account to account holder by taking opening balance as parameter
+ * @param openBalance Account holder's initial opening balance
+ */
+
+
 	public void addCheckingAccount(double openBalance) {
 		if(getCheckingBalance() + getSavingsBalance() + openBalance >= 250000) {
 			System.out.println("Cannot open a new Checking Account because aggregate balance of accounts is to high.");
@@ -37,9 +54,11 @@ public class AccountHolder {
 		checkingArray[checkingArray.length-1] = newA;
 	}
 
-
-	// Method to add checking account to an account holder
-	// Validates that aggregate account balances are less than $250,000.00		
+/**
+ * This method used to add checking account to account holder by validating aggregate balances are less than $250,000.00
+ * @param checkingAccount checking account amount
+ */
+			
 	public void addCheckingAccount(CheckingAccount checkingAccount) {
 		if(checkingAccount.getBalance() + getCheckingBalance() + getSavingsBalance() >= 250000) {
 			System.out.println("Cannot open a new Checking Account because aggregate balance of accounts is to high.");
@@ -53,8 +72,11 @@ public class AccountHolder {
 			checkingArray[checkingArray.length-1] = checkingAccount;
 	}
 	
-
-	// Method for finding aggregate balance of checking accounts
+/**
+ * This method calculates the aggregate balance of checking accounts
+ * @return the total amount of the checking accounts
+ */
+	
 	public double getCheckingBalance() {
 		double total = 0.0;
 		int i;
@@ -63,10 +85,11 @@ public class AccountHolder {
 		}
 		return total;
 	}
+/**
+ * This method adds savings account to account holder by validating the aggregate balance is less than $250,000.00
+ * @param openBalance the initial opening balance of the saving account
+ */
 	
-	// Method for adding savings account to account holder
-	// Validates that aggregate account balance is less than $250,000
-	// Takes and opening balance as a parameter
 	public void addSavingsAccount(double openBalance) {
 		if(getCheckingBalance() + getSavingsBalance() + openBalance >= 250000) {
 			System.out.println("Cannot open a new Savings Account because aggregate balance of accounts is to high.");
@@ -81,9 +104,11 @@ public class AccountHolder {
 			savingsArray[savingsArray.length-1] = newA;
 	}
 	
-
-	// Method for adding savings account to account holder
-	// Validates aggregate account balance is less than $250,000
+/**
+ * This method validates account balance is less than $250,00.00 and adds savings account to account holder 
+ * @param savingsAccount the savings account amount
+ */
+	
 	public void addSavingsAccount(SavingsAccount savingsAccount) {
 		if(savingsAccount.getBalance() + getCheckingBalance() + getSavingsBalance() >= 250000) {
 			System.out.println("Cannot open a new Savings Account because aggregate balance of accounts is to high.");
@@ -97,17 +122,26 @@ public class AccountHolder {
 			savingsArray[savingsArray.length-1] = savingsAccount;
 	}
 	
-	// Returns a savings account
+	/**
+	 * 
+	 * @return savings account
+	 */
+	
 	public SavingsAccount[] getSavingsAccounts() {
 		return savingsArray;
 	}
 	
-	// Returns the total number of savings accounts
+	/** 
+	 * @return the total number of savings accounts
+	 */
+	
 	public int getNumberOfSavingsAccounts() {
 		return savingsArray.length;
 	}
+	/** 
+	 * @return the total balance in savings accounts
+	 */
 	
-	// Returns the total balance in savings accounts
 	public double getSavingsBalance() {
 		double total = 0.0;
 		for(SavingsAccount balance : savingsArray) {
@@ -117,7 +151,12 @@ public class AccountHolder {
 
 	}
 
-	// Adds a CDAccount to the account holder	
+	/**
+	 * This method used to add CDAccount to the account holder
+	 * @param offering the CDOffering 
+	 * @param openBalance the opening balance
+	 */
+		
 	public void addCDAccount(CDOffering offering, double openBalance) {
 			CDAccount newA = new CDAccount(offering, openBalance);
 			CDAccount[] newCDArray = new CDAccount[cdAccountArray.length+1];

@@ -1,6 +1,9 @@
 package com.meritamerica.assignment2;
 
 import java.util.Date;
+/**
+ * This class calculates parameters for  the Certificate of Deposit account and it's future value.
+ */
 
 public class CDAccount {
 	

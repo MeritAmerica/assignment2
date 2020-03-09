@@ -1,4 +1,9 @@
 package com.meritamerica.assignment2;
+/**
+ * This class get the term and interest rate parameter by passing two getter methods.
+ * @author ChrisJohnson
+ *
+ */
 
 public class CDOffering {
 	
