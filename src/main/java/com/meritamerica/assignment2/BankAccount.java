@@ -2,7 +2,7 @@ package com.meritamerica.assignment2;
 
 public class BankAccount {
 	public long accountNumber;
-	public double balance, interestRate;
+	public double balance, interestRate, futureBalance;
 	
 	BankAccount(){
 	}
@@ -22,18 +22,6 @@ public class BankAccount {
 		return interestRate;
 	}
 
-	public void setInterestRate(double interestRate) {
-		this.interestRate = interestRate;
-	}
-
-	public void setAccountNumber(long accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
-	
 	public long getAccountNumber() {
 		return this.accountNumber;
 	}
@@ -42,5 +30,28 @@ public class BankAccount {
 		return this.balance;
 	}
 	
+	public boolean withdraw(double amount) {
+		if(amount < balance && amount > 0) {
+			balance -= amount;
+			return true;
+		}else {
+			System.out.println("Not enough money!!!");
+			return false;
+		}
+	}
 	
+	public boolean deposit(double amount) {
+		if(amount > 0) {
+			balance += amount;
+			return true;
+		}else {
+			System.out.println("Cannot deposit a negative amount");
+			return false;
+		}
+	}
+	
+	public double futureValue(int years) {
+		futureBalance = (balance * Math.pow(1.0 + interestRate, years));
+		return futureBalance;
+	}
 }
