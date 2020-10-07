@@ -4,6 +4,8 @@ public class BankAccount {
 	public long accountNumber;
 	public double balance, interestRate;
 	
+	BankAccount(){
+	}
 	
 	BankAccount(double balance, double interestRate){
 		this.balance = balance;
