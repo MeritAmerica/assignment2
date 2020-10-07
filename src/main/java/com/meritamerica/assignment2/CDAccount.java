@@ -2,7 +2,7 @@ package com.meritamerica.assignment2;
 
 import java.util.Date;
 
-public class CDAccount {
+public class CDAccount extends BankAccount {
 	public CDOffering offering = new CDOffering();
 	public double balance;
 	
@@ -12,6 +12,6 @@ public class CDAccount {
 	}
 	
 	public double getBalance() {
-		
+		return this.balance;
 	}
 }
