@@ -4,8 +4,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class MeritBank {
-//	public AccountHolder[] accountHolders = new AccountHolder[];
-	
+	int size = 5;
+	AccountHolder[] accountHolders = new AccountHolder[size];
+	CDOffering[] CDOfferings = new CDOffering[size];
 //	MeritBank(){
 //	}
 	
@@ -13,7 +14,13 @@ public class MeritBank {
 		accountHolder = new AccountHolder();
 	}
 	
-	public AccountHolder[] getAccountHolders() {
-		return getAccountHolders();
+	public static AccountHolder[] getAccountHolders() {
+		return accountHolders;
 	}
+	
+	public static CDOffering[] getCDOfferings() {
+		
+	}
+	
+	
 }
