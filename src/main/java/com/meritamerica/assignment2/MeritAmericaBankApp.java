@@ -2,14 +2,15 @@ package com.meritamerica.assignment2;
 
 public class MeritAmericaBankApp {
 	public static void main(String[] args) {
-		AccountHolder john = new AccountHolder
-				("John",
-				 "James", 
-				 "Doe", 
-				 "123-45-6789", 
-				  100.0, 
-				  1000.0);
+		MeritBank CD1 = new MeritBank();
+		
+		CDOfferings[0] = new CDOffering(1,1.8/100);
+    	CDOfferings[1] = new CDOffering(2,1.9/100);
+    	CDOfferings[2] = new CDOffering(3,2.0/100);
+    	CDOfferings[3] = new CDOffering(5,2.5/100);
+    	CDOfferings[4] = new CDOffering(10,2.2/100);
 		
 		
 	}
+	
 }
