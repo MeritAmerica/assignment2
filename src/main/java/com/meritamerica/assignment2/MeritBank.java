@@ -75,8 +75,7 @@ public class MeritBank {
 	}
 	
 	public static double totalBalances() {
-		double total;
-		total = 
+		
 	}
 	
 	public String toString() {

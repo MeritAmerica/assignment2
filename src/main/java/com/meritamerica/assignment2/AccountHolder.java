@@ -32,17 +32,6 @@ public class AccountHolder {
 	}
 	
 /** Getters and Setters */	
-	public double getTotalAccountBalance() {
-		for(int i = 0; i < numberOfCheckingAccounts || i < numberOfSavingsAccounts; i++) {
-			if(i < numberOfCheckingAccounts) {
-				totalAccountBalance += checkingAccounts[i].getBalance();
-			}
-			if(i < numberOfSavingsAccounts) {
-				totalAccountBalance += savingsAccounts[i].getBalance();
-			}
-		}
-		return totalAccountBalance;
-	}
 	
 	public String getFirstName() {
 		return this.firstName;
@@ -133,7 +122,11 @@ public class AccountHolder {
 	}
 	
 	public double getCheckingBalance() {
-		return checkingAccount.getBalance();
+		double total = 0.0;
+		for(int i = 0; i < numberOfCheckingAccounts; i++) {
+			total += checkingAccounts[i].getBalance();
+		}
+		return total;
 	}
 	
 	public SavingsAccount addSavingsAccount(double openingBalance) {
@@ -191,7 +184,11 @@ public class AccountHolder {
 	}
 	
 	public double getSavingsBalance() {
-		return savingsAccount.getBalance();
+		double total = 0.0;
+		for(int i = 0; i < numberOfSavingsAccounts; i++) {
+			total += savingsAccounts[i].getBalance();
+		}
+		return total;
 	}
 	
 	public CDAccount addCDAccount(CDOffering offering, double openingBalance) {
@@ -240,9 +237,24 @@ public class AccountHolder {
 	}
 	
 	public double getCDBalance() {
-		return cdAccounts
+		double total = 0.0;
+		for(int i = 0; i < numberOfCDAccounts; i++) {
+			total += cdAccounts[i].getBalance();
+		}
+		return total;
 	}
 	
+	public double getCombinedBalance() {
+		for(int i = 0; i < numberOfCheckingAccounts || i < numberOfSavingsAccounts; i++) {
+			if(i < numberOfCheckingAccounts) {
+				totalAccountBalance += checkingAccounts[i].getBalance();
+			}
+			if(i < numberOfSavingsAccounts) {
+				totalAccountBalance += savingsAccounts[i].getBalance();
+			}
+		}
+		return totalAccountBalance;
+	}
 /** Converts type to String */	
 	@Override
 	public String toString() {
