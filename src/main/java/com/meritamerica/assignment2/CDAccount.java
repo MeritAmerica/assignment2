@@ -9,6 +9,7 @@ public class CDAccount extends BankAccount {
 	
 	
 	CDAccount(CDOffering offering, double balance){
+		super();
 		this.offering = offering;
 		this.balance = balance;
 	}

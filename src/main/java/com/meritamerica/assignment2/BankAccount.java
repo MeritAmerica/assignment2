@@ -1,5 +1,7 @@
 package com.meritamerica.assignment2;
 
+import java.util.Random;
+
 public class BankAccount {
 	public long accountNumber;
 	public double balance, interestRate, futureBalance;
@@ -13,7 +15,7 @@ public class BankAccount {
 	}
 	
 	BankAccount(long accountNumber, double balance, double interestRate){
-		this.accountNumber = accountNumber;
+		this.accountNumber = new Random().nextLong();
 		this.balance = balance;
 		this.interestRate = interestRate;
 	}
@@ -32,7 +34,7 @@ public class BankAccount {
 	
 	public boolean withdraw(double amount) {
 		if(amount < balance && amount > 0) {
-			balance -= amount;
+			this.balance -= amount;
 			return true;
 		}else {
 			System.out.println("Not enough money!!!");
@@ -42,7 +44,7 @@ public class BankAccount {
 	
 	public boolean deposit(double amount) {
 		if(amount > 0) {
-			balance += amount;
+			this.balance += amount;
 			return true;
 		}else {
 			System.out.println("Cannot deposit a negative amount");

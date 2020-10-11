@@ -1,8 +1,11 @@
 package com.meritamerica.assignment2;
 
 public class MeritAmericaBankApp {
+
 	public static void main(String[] args) {
 		MeritBank CD1 = new MeritBank();
+		
+		CDOffering[] CDOfferings = new CDOffering[5];
 		
 		CDOfferings[0] = new CDOffering(1,1.8/100);
     	CDOfferings[1] = new CDOffering(2,1.9/100);

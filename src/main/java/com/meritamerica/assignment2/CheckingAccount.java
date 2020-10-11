@@ -6,11 +6,12 @@ public class CheckingAccount extends BankAccount {
 	CheckingAccount(
 			double openingBalance)
 			{
+		super();
 		this.openingBalance = openingBalance;
 		this.interestRate = 0.0001;
 	}
 	
-
+	
 	public double getBalance() {
 		return this.openingBalance;
 	}
