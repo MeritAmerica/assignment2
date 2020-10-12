@@ -3,9 +3,9 @@ package com.meritamerica.assignment2;
 public class AccountHolder {
 	public int numberOfCheckingAccounts = 0, numberOfSavingsAccounts = 0, numberOfCDAccounts = 0, size = 5;
 	public double totalAccountBalance = 0;
-	public CheckingAccount checkingAccount;
-	public SavingsAccount savingsAccount;
-	public CDAccount cdAccount;
+//	public CheckingAccount checkingAccount;
+//	public SavingsAccount savingsAccount;
+//	public CDOffering cdOffering;
 	public CheckingAccount[] checkingAccounts = new CheckingAccount[size];
 	public SavingsAccount[] savingsAccounts = new SavingsAccount[size];
 	public CDAccount[] cdAccounts = new CDAccount[size];
@@ -66,11 +66,10 @@ public class AccountHolder {
 	}
 	
 	public CheckingAccount addCheckingAccount(double openingBalance) {
-		if(totalAccountBalance >= 250000.0) {
+		if(totalAccountBalance + openingBalance > 250000.0) {
 			System.out.print("Cannot hold more than $250,000 per account holder!!");
 			return null;
-		}
-		if(numberOfCheckingAccounts == size) {
+		}else if(numberOfCheckingAccounts == size) {
 			size *= 2;
 			CheckingAccount[] temp = new CheckingAccount[size];
 			for(int i = 0; i < numberOfCheckingAccounts; i++) {
@@ -80,22 +79,23 @@ public class AccountHolder {
 			temp[numberOfCheckingAccounts] = account;
 			checkingAccounts = temp;
 			numberOfCheckingAccounts++;
+			totalAccountBalance += openingBalance;
 			return account;
 		}else {
 			CheckingAccount account = new CheckingAccount(openingBalance);
 			checkingAccounts[numberOfCheckingAccounts] = account;
 			numberOfCheckingAccounts++;
+			totalAccountBalance += openingBalance;
 			return account;
 		}
 	}
 	
 
 	public CheckingAccount addCheckingAccount(CheckingAccount checkingAccount) {
-		if(totalAccountBalance >= 250000.0) {
+		if(totalAccountBalance + checkingAccount.getBalance() > 250000.0) {
 			System.out.print("Cannot hold more than $250,000 per account holder!!");
 			return checkingAccount;
-		}
-		if(numberOfCheckingAccounts == size) {
+		}else if(numberOfCheckingAccounts == size) {
 			size *= 2;
 			CheckingAccount[] temp = new CheckingAccount[size];
 			for(int i = 0; i < numberOfCheckingAccounts; i++) {
@@ -105,10 +105,12 @@ public class AccountHolder {
 			temp[numberOfCheckingAccounts] = checkingAccount;
 			checkingAccounts = temp;
 			numberOfCheckingAccounts++;
+			totalAccountBalance += checkingAccount.getBalance();
 			return checkingAccount;
 		}else {
 			checkingAccounts[numberOfCheckingAccounts] = checkingAccount;
 			numberOfCheckingAccounts++;
+			totalAccountBalance += checkingAccount.getBalance();
 			return checkingAccount;
 		}
 	}
@@ -130,11 +132,10 @@ public class AccountHolder {
 	}
 	
 	public SavingsAccount addSavingsAccount(double openingBalance) {
-		if(totalAccountBalance >= 250000.0) {
+		if(totalAccountBalance + openingBalance > 250000.0) {
 			System.out.print("Cannot hold more than $250,000 per account holder!!");
 			return null;
-		}
-		if(numberOfSavingsAccounts == size) {
+		}else if(numberOfSavingsAccounts == size) {
 			size *= 2;
 			SavingsAccount[] temp = new SavingsAccount[size];
 			for(int i = 0; i < numberOfSavingsAccounts; i++) {
@@ -144,33 +145,36 @@ public class AccountHolder {
 			temp[numberOfSavingsAccounts] = account;
 			savingsAccounts = temp;
 			numberOfSavingsAccounts++;
+			totalAccountBalance += openingBalance;
 			return account;
 		}else {
 			SavingsAccount account = new SavingsAccount(openingBalance);
 			savingsAccounts[numberOfCheckingAccounts] = account;
 			numberOfSavingsAccounts++;
+			totalAccountBalance += openingBalance;
 			return account;
 		}
 	}
 	
 	public SavingsAccount addSavingsAccount(SavingsAccount savingsAccount) {
-		if(totalAccountBalance >= 250000.0) {
+		if(totalAccountBalance + savingsAccount.getBalance() > 250000.0) {
 			System.out.print("Cannot hold more than $250,000 per account holder!!");
 			return null;
-		}
-		if(numberOfSavingsAccounts == size) {
+		}else if(numberOfSavingsAccounts == size) {
 			size *= 2;
 			SavingsAccount[] temp = new SavingsAccount[size];
 			for(int i = 0; i < numberOfSavingsAccounts; i++) {
 				temp[i] = savingsAccounts[i];
 			}
-			temp[numberOfSavingsAccounts] = savingsAccount;
 			savingsAccounts = temp;
+			savingsAccounts[numberOfCheckingAccounts] = savingsAccount;
 			numberOfSavingsAccounts++;
+			totalAccountBalance += savingsAccount.getBalance();
 			return savingsAccount;
 		}else {
 			savingsAccounts[numberOfCheckingAccounts] = savingsAccount;
 			numberOfSavingsAccounts++;
+			totalAccountBalance += savingsAccount.getBalance();
 			return savingsAccount;
 		}
 	}
@@ -245,15 +249,16 @@ public class AccountHolder {
 	}
 	
 	public double getCombinedBalance() {
+		double total = 0.0;
 		for(int i = 0; i < numberOfCheckingAccounts || i < numberOfSavingsAccounts; i++) {
 			if(i < numberOfCheckingAccounts) {
-				totalAccountBalance += checkingAccounts[i].getBalance();
+				total += checkingAccounts[i].getBalance();
 			}
 			if(i < numberOfSavingsAccounts) {
-				totalAccountBalance += savingsAccounts[i].getBalance();
+				total += savingsAccounts[i].getBalance();
 			}
 		}
-		return totalAccountBalance;
+		return total;
 	}
 /** Converts type to String */	
 	@Override

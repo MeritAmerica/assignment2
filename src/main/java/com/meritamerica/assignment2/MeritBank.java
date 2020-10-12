@@ -1,10 +1,8 @@
 package com.meritamerica.assignment2;
 
-import java.util.Arrays;
-import java.util.Random;
 
 public class MeritBank {
-	public static int size = 5, numberOfAccountHolders;
+	public static int size = 5, numberOfAccountHolders = 0;
 	public static long[] accountNumbers = new long[size];
 	public static AccountHolder[] accountHolders = new AccountHolder[size];
 	public static CDOffering[] CDOfferings = new CDOffering[size];
@@ -20,11 +18,9 @@ public class MeritBank {
 				temp[i] = accountHolders[i];
 			}
 			accountHolders = temp;
-			accountHolder = new AccountHolder();
 			accountHolders[numberOfAccountHolders] = accountHolder;
 			numberOfAccountHolders++;
 		}else {
-			accountHolder = new AccountHolder();
 			accountHolders[numberOfAccountHolders] = accountHolder;
 			numberOfAccountHolders++;
 		}
@@ -75,7 +71,11 @@ public class MeritBank {
 	}
 	
 	public static double totalBalances() {
-		
+		double total = 0.0;
+		for(int i = 0; i < numberOfAccountHolders; i ++) {
+			total = (accountHolders[i].getSavingsBalance() + accountHolders[i].getCheckingBalance() + accountHolders[i].getCDBalance());
+		}
+		return total;
 	}
 	
 	public String toString() {
