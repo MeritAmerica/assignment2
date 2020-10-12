@@ -2,7 +2,7 @@ package com.meritamerica.assignment2;
 
 
 public class MeritBank {
-	public static int size = 5, numberOfAccountHolders = 0;
+	public static int size = 5, numberOfAccountHolders = 0, numberOfCDOfferings = 0;
 	public static long[] accountNumbers = new long[size];
 	public static AccountHolder[] accountHolders = new AccountHolder[size];
 	public static CDOffering[] CDOfferings = new CDOffering[size];
@@ -37,7 +37,7 @@ public class MeritBank {
 	public static CDOffering getBestCDOffering(double depositAmount) {
 		CDAccount temp = new CDAccount(CDOfferings[0], depositAmount);
 		CDOffering best = CDOfferings[0];
-		for(int i = 1; i < size; i++) {
+		for(int i = 1; i < numberOfCDOfferings; i++) {
 			if(temp.futureValue(CDOfferings[i].getTerm()) > temp.futureValue(CDOfferings[i - 1].getTerm())) {
 				best = CDOfferings[i];
 			}
@@ -49,7 +49,7 @@ public class MeritBank {
 		CDAccount temp = new CDAccount(CDOfferings[0], depositAmount);
 		CDOffering secondBest = CDOfferings[0];
 		CDOffering best = CDOfferings[0];
-		for(int i = 1; i < size; i++) {
+		for(int i = 1; i < numberOfCDOfferings; i++) {
 			if(temp.futureValue(CDOfferings[i].getTerm()) > temp.futureValue(CDOfferings[i - 1].getTerm())) {
 				secondBest = best;
 				best = CDOfferings[i];	

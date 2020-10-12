@@ -67,8 +67,8 @@ public class AccountHolder {
 	
 	public CheckingAccount addCheckingAccount(double openingBalance) {
 		if(totalAccountBalance + openingBalance > 250000.0) {
-			System.out.print("Cannot hold more than $250,000 per account holder!!");
-			return null;
+			System.out.println("Cannot hold more than $250,000 per account holder!!");
+			return checkingAccounts[numberOfCheckingAccounts];
 		}else if(numberOfCheckingAccounts == size) {
 			size *= 2;
 			CheckingAccount[] temp = new CheckingAccount[size];
@@ -93,7 +93,7 @@ public class AccountHolder {
 
 	public CheckingAccount addCheckingAccount(CheckingAccount checkingAccount) {
 		if(totalAccountBalance + checkingAccount.getBalance() > 250000.0) {
-			System.out.print("Cannot hold more than $250,000 per account holder!!");
+			System.out.println("Cannot hold more than $250,000 per account holder!!");
 			return checkingAccount;
 		}else if(numberOfCheckingAccounts == size) {
 			size *= 2;
@@ -133,8 +133,8 @@ public class AccountHolder {
 	
 	public SavingsAccount addSavingsAccount(double openingBalance) {
 		if(totalAccountBalance + openingBalance > 250000.0) {
-			System.out.print("Cannot hold more than $250,000 per account holder!!");
-			return null;
+			System.out.println("Cannot hold more than $250,000 per account holder!!");
+			return savingsAccounts[numberOfSavingsAccounts];
 		}else if(numberOfSavingsAccounts == size) {
 			size *= 2;
 			SavingsAccount[] temp = new SavingsAccount[size];
@@ -149,7 +149,7 @@ public class AccountHolder {
 			return account;
 		}else {
 			SavingsAccount account = new SavingsAccount(openingBalance);
-			savingsAccounts[numberOfCheckingAccounts] = account;
+			savingsAccounts[numberOfSavingsAccounts] = account;
 			numberOfSavingsAccounts++;
 			totalAccountBalance += openingBalance;
 			return account;
@@ -158,8 +158,8 @@ public class AccountHolder {
 	
 	public SavingsAccount addSavingsAccount(SavingsAccount savingsAccount) {
 		if(totalAccountBalance + savingsAccount.getBalance() > 250000.0) {
-			System.out.print("Cannot hold more than $250,000 per account holder!!");
-			return null;
+			System.out.println("Cannot hold more than $250,000 per account holder!!");
+			return savingsAccount;
 		}else if(numberOfSavingsAccounts == size) {
 			size *= 2;
 			SavingsAccount[] temp = new SavingsAccount[size];
@@ -167,12 +167,12 @@ public class AccountHolder {
 				temp[i] = savingsAccounts[i];
 			}
 			savingsAccounts = temp;
-			savingsAccounts[numberOfCheckingAccounts] = savingsAccount;
+			savingsAccounts[numberOfSavingsAccounts] = savingsAccount;
 			numberOfSavingsAccounts++;
 			totalAccountBalance += savingsAccount.getBalance();
 			return savingsAccount;
 		}else {
-			savingsAccounts[numberOfCheckingAccounts] = savingsAccount;
+			savingsAccounts[numberOfSavingsAccounts] = savingsAccount;
 			numberOfSavingsAccounts++;
 			totalAccountBalance += savingsAccount.getBalance();
 			return savingsAccount;
@@ -249,15 +249,7 @@ public class AccountHolder {
 	}
 	
 	public double getCombinedBalance() {
-		double total = 0.0;
-		for(int i = 0; i < numberOfCheckingAccounts || i < numberOfSavingsAccounts; i++) {
-			if(i < numberOfCheckingAccounts) {
-				total += checkingAccounts[i].getBalance();
-			}
-			if(i < numberOfSavingsAccounts) {
-				total += savingsAccounts[i].getBalance();
-			}
-		}
+		double total = getCheckingBalance() + getSavingsBalance() + getCDBalance();
 		return total;
 	}
 /** Converts type to String */	
