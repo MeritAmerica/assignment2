@@ -13,7 +13,6 @@ public class CDOffering {
 	}
 	
 	public int getTerm() {
-		System.out.println(term);
 		return term;
 	}
 	

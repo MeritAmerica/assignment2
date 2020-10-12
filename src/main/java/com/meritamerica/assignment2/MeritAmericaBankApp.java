@@ -23,8 +23,8 @@ public class MeritAmericaBankApp {
 		SavingsAccount sa2 = new SavingsAccount(50000);
 		
 		CheckingAccount ca3 = new CheckingAccount(50000);
-		SavingsAccount sa3 = new SavingsAccount(500000);
-		
+		SavingsAccount sa3 = new SavingsAccount(500000);//Will not add. Constraint met.
+	
 		CheckingAccount ca4 = new CheckingAccount(5000);
 		SavingsAccount sa4 = new SavingsAccount(50000);
 		
@@ -41,9 +41,7 @@ public class MeritAmericaBankApp {
 		ah1.addSavingsAccount(sa4);
 		
 		
-		for (int i = 0; i < ah1.numberOfCheckingAccounts; i++) {
-			System.out.println(ah1.checkingAccounts[i].getBalance());
-		}
+		ah1.printAccountBalances();
 		
 		MeritBank.getCDOfferings();
 		ah1.addCDAccount(MeritBank.getBestCDOffering(ah1.getCombinedBalance()), ah1.getCombinedBalance());

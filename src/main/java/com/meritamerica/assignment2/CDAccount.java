@@ -5,6 +5,7 @@ import java.util.Date;
 public class CDAccount extends BankAccount {
 	public CDOffering offering = new CDOffering();
 	public int term;
+	public double interestRate;
 	public Date startDate = new Date();
 	
 	
@@ -12,6 +13,8 @@ public class CDAccount extends BankAccount {
 		super();
 		this.offering = offering;
 		this.balance = balance;
+		this.term = offering.getTerm();
+		this.interestRate = offering.getInterestRate();
 	}
 	
 	public double getBalance() {

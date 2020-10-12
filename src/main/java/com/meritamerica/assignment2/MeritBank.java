@@ -73,7 +73,7 @@ public class MeritBank {
 	public static double totalBalances() {
 		double total = 0.0;
 		for(int i = 0; i < numberOfAccountHolders; i ++) {
-			total = (accountHolders[i].getSavingsBalance() + accountHolders[i].getCheckingBalance() + accountHolders[i].getCDBalance());
+			total += (accountHolders[i].getTotalAccountBalances());
 		}
 		return total;
 	}
