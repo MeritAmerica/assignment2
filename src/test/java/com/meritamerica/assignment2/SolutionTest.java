@@ -130,11 +130,9 @@ public class SolutionTest {
     	CDOffering cdOffering = new CDOffering(1,1.8/100);
     	CDAccount cdAccount = new CDAccount(cdOffering, 5000);
     	
-    	
     	AccountHolder accountHolder = new AccountHolder("Sam", "John", "Houston","633378899");
     	
     	accountHolder.addCDAccount(cdAccount);
-    	
         assertEquals(1, accountHolder.getCDAccounts()[0].getTerm());    	
         assertEquals(1.8/100, accountHolder.getCDAccounts()[0].getInterestRate(),0); 
         assertEquals(5000, accountHolder.getCDAccounts()[0].getBalance(),0);    	
