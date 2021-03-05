@@ -14,9 +14,7 @@ public class AccountHolder
 	private CDAccount[] cdAccountList = new CDAccount[10];
 	
 		
-	/*METHODS*/
-	AccountHolder() {}
-	
+	/*METHODS*/	
 	AccountHolder(
 			String firstName,
 			String middleName,
@@ -28,6 +26,7 @@ public class AccountHolder
 		this.middleName = middleName;
 		this.lastName = lastName;
 		this.ssn = ssn;
+		
 	}
 		
 	/* GETTERS */
@@ -170,11 +169,28 @@ public class AccountHolder
 	/* CD ACCOUNT */
 	CDAccount addCDAccount(CDOffering offering, double openingBalance)
 	{
+		if(MeritBank.getCDOfferings() == null)
+		{
+			return null;
+		} else {
 		return addCDAccount(new CDAccount(offering, openingBalance));
+		}
 	}
 	
 	CDAccount addCDAccount(CDAccount cdAccount)
 	{
+		if(cdAccountList == null)
+		{
+			return null;
+		}
+		for(int i = 0; i < cdAccountList.length; i++)
+		{
+			if(cdAccountList[i] == null)
+			{
+				cdAccountList[i] = cdAccount;
+				break;
+			}
+		}
 		return cdAccount;
 	}
 	

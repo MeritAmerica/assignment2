@@ -9,11 +9,9 @@ public class BankAccount
 	protected double balance;
 	protected double interestRate;
 	
-	BankAccount(){}
-	
 	BankAccount(double balance, double interestRate)
 	{
-		new BankAccount();
+		this(MeritBank.getNextAccountNumber(), balance, interestRate);
 	}
 	
 	BankAccount(long accountNumber, double balance, double interestRate)
@@ -25,7 +23,6 @@ public class BankAccount
 	
 	long getAccountNumber()
 	{
-		// create random num gen 8 digits long and assign?
 		return this.accountNumber;
 	}
 	
@@ -36,7 +33,7 @@ public class BankAccount
 	
 	double getInterestRate()
 	{
-		return interestRate / 100;
+		return interestRate;
 	}
 	
 	boolean withdraw(double amount)

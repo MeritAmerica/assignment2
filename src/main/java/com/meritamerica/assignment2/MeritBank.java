@@ -7,15 +7,16 @@ import java.util.*;
 public class MeritBank 
 {
 	private static CDOffering[] listOfCDOffers =  new CDOffering[5];
-	private static AccountHolder[] accountHolderList = new AccountHolder[10];
+	private static AccountHolder[] listOfAccountHolders = new AccountHolder[10];
+	private static long nextAccountNumber = 0L;
 	
 	static void addAccountHolder(AccountHolder accountHolder)
 	{
-		for(int i = 0; i < accountHolderList.length; i++)
+		for(int i = 0; i < listOfAccountHolders.length; i++)
 		{
-			if(accountHolderList[i] == null)
+			if(listOfAccountHolders[i] == null)
 			{
-				accountHolderList[i] = accountHolder;
+				listOfAccountHolders[i] = accountHolder;
 				break;
 			}
 		}
@@ -23,7 +24,7 @@ public class MeritBank
 	
 	static AccountHolder[] getAccountHolders()
 	{
-		return accountHolderList;
+		return listOfAccountHolders;
 	}
 	
 	static CDOffering[] getCDOfferings()
@@ -32,7 +33,8 @@ public class MeritBank
 	}
 	
 	static CDOffering getBestCDOffering(double depositAmount)
-	{		
+	{	
+		if(listOfCDOffers == null) return null;
 		double stored = futureValue(depositAmount, listOfCDOffers[0].getInterestRate(), listOfCDOffers[0].getTerm());
 		int indexBiggest = 0;
 		for(int i = 1; i < listOfCDOffers.length; i++)
@@ -47,10 +49,9 @@ public class MeritBank
 		return listOfCDOffers[indexBiggest];
 	}
 	
-	/* ERROR IN LINE 53 AND 34*/
-	
 	static CDOffering getSecondBestCDOffering(double depositAmount)
 	{
+		if(listOfCDOffers == null) return null;
 		double biggest = futureValue(depositAmount, listOfCDOffers[0].getInterestRate(), listOfCDOffers[0].getTerm());
 		double secondBiggest = futureValue(depositAmount, listOfCDOffers[0].getInterestRate(), listOfCDOffers[0].getTerm());
 		int indexBiggest = 0;
@@ -83,24 +84,25 @@ public class MeritBank
 	
 	static long getNextAccountNumber()
 	{
-		
+		return nextAccountNumber++;
 	}
 	
 	static double totalBalances()
 	{
-		double totalCheckingBal = 0;
-		double totalSavingsBal = 0;
-		double totalCDBal = 0;
-		double total = totalCDBal + totalCheckingBal + totalSavingsBal;
-		for(AccountHolder ah: accountHolderList) 
+		double total = 0;
+		for(AccountHolder ah: listOfAccountHolders) 
 		{
-			
+			if(ah != null)
+			{
+				total += ah.getCombinedBalance();
+			}		
 		}
+		return total;
 	 }
 	
-	static double futureValue(double presentValue, double interestRate, int term)
+	public static double futureValue(double presentValue, double interestRate, int term)
 	{
-		return presentValue * Math.pow((1 + interestRate), (double)term);
+		return presentValue * Math.pow((1 + interestRate), term);
 	}
 
 }

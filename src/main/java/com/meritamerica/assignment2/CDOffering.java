@@ -18,7 +18,7 @@ public class CDOffering
 	
 	double getInterestRate()
 	{
-		return interestRate / 100;
+		return interestRate;
 	}
 
 }
