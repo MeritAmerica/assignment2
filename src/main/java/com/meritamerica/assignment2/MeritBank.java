@@ -88,7 +88,14 @@ public class MeritBank
 	
 	static double totalBalances()
 	{
-		/* need to get total for each account holder (each will need to check for check/sav/cd) */
+		double totalCheckingBal = 0;
+		double totalSavingsBal = 0;
+		double totalCDBal = 0;
+		double total = totalCDBal + totalCheckingBal + totalSavingsBal;
+		for(AccountHolder ah: accountHolderList) 
+		{
+			
+		}
 	 }
 	
 	static double futureValue(double presentValue, double interestRate, int term)

@@ -1,8 +1,5 @@
 package com.meritamerica.assignment2;
 
-import java.util.Arrays;
-import java.util.stream.DoubleStream;
-
 public class AccountHolder 
 {
 	/*INSTANCE VARIABLES*/
@@ -33,7 +30,7 @@ public class AccountHolder
 		this.ssn = ssn;
 	}
 		
-	/*GETTERS*/
+	/* GETTERS */
 	String getFirstName()
 	{
 		return firstName;
@@ -54,17 +51,19 @@ public class AccountHolder
 		return ssn;
 	}
 	
+	/* CHECKING ACCOUNT */
 	CheckingAccount addCheckingAccount(double openingBalance)
 	{
-		if((openingBalance + (getCombinedBalance() - getCDChecking()) < BALANCE_LIMIT)
+		if((openingBalance + (getCombinedBalance() - getCDBalance()) < BALANCE_LIMIT))
 		{
 			return addCheckingAccount(new CheckingAccount(openingBalance));
-		}
+		}		
+		return null;
 	}
 	
 	CheckingAccount addCheckingAccount(CheckingAccount checkingAccount)
 	{
-		if((checkingAccount.getBalance() + (getCombinedBalance() - getCDBalance()) < BALANCE_LIMIT)
+		if((checkingAccount.getBalance() + (getCombinedBalance() - getCDBalance()) < BALANCE_LIMIT))
 		{
 			for(int i = 0; i < checkingAccountList.length; i++)
 			{
@@ -110,17 +109,19 @@ public class AccountHolder
 		return sum;
 	}
 	
+	/* SAVINGS ACCOUNT */
 	SavingsAccount addSavingsAccount(double openingBalance)
 	{
-		if((openingBalance + (getCombinedBalance() - getCDChecking()) < BALANCE_LIMIT))
+		if((openingBalance + (getCombinedBalance() - getCDBalance()) < BALANCE_LIMIT))
 				{
 					return addSavingsAccount(new SavingsAccount(openingBalance));
-				}
+				}		
+		return null;
 	}	
 	
 	SavingsAccount addSavingsAccount(SavingsAccount savingsAccount)
 	{
-		if((savingsAccount.getBalance() + (getCombinedBalance() - getCDBalance()) < BALANCE_LIMIT)
+		if((savingsAccount.getBalance() + (getCombinedBalance() - getCDBalance()) < BALANCE_LIMIT))
 		{
 			for(int i = 0; i < savingsAccountList.length; i++)
 			{
@@ -166,6 +167,7 @@ public class AccountHolder
 		return sum;
 	}
 	
+	/* CD ACCOUNT */
 	CDAccount addCDAccount(CDOffering offering, double openingBalance)
 	{
 		return addCDAccount(new CDAccount(offering, openingBalance));
