@@ -14,8 +14,7 @@ public class MeritAmericaBankApp
 		cdOfferings[4] = new CDOffering(10, 2.2);
 		MeritBank.setCDOfferings(cdOfferings);
 		
-		AccountHolder ah1 = new AccountHolder("The", "Super", "Dave", "111-11-1111");
-		MeritBank.addAccountHolder(ah1);															// Instantiate 1 new account holder, AH1
+		AccountHolder ah1 = new AccountHolder("The", "Super", "Dave", "111-11-1111");				// Instantiate 1 new account holder, AH1
 		ah1.addCheckingAccount(1000);																// add a checking account with opening bal of $1000, Savings with $10000
 		ah1.addSavingsAccount(10000);																
 		ah1.addCheckingAccount(5000);																// add a checking account with opening bal of $5000, savings with $50000
