@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class BankAccount {
 
-	private double balance;
+	protected double balance;
 	private double interestRate;
 	private long accountNumber;
 	Date openDate;
