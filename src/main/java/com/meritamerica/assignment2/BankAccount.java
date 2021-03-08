@@ -1,67 +1,60 @@
 package com.meritamerica.assignment2;
 
+import java.util.Date;
+
 public class BankAccount {
 
 	private double balance;
-	
-	private double intrestRate;
-	
+	private double interestRate;
 	private long accountNumber;
+	Date openDate;
 
-	public BankAccount(double balance, double intrestRate) {
-		this.balance = balance;
-		this.intrestRate = intrestRate;
+	public BankAccount(double balance, double interestRate) {
+		 this(MeritBank.getNextAccountNumber(), balance, interestRate);
 	}
 
-	public BankAccount(double balance, double intrestRate, long accountNumber) {
-		this.balance = balance;
-		this.intrestRate = intrestRate;
+	public BankAccount(long accountNumber, double balance, double interestRate) {
 		this.accountNumber = accountNumber;
-	}
-
-	public double getBalance() {
-		return balance;
-	}
-
-	public void setBalance(double balance) {
 		this.balance = balance;
-	}
-
-	public double getIntrestRate() {
-		return intrestRate;
-	}
-
-	public void setIntrestRate(double intrestRate) {
-		this.intrestRate = intrestRate;
+		this.interestRate = interestRate;
 	}
 
 	public long getAccountNumber() {
-		return accountNumber;
+		return this.accountNumber;
 	}
 
-	public void setAccountNumber(long accountNumber) {
-		this.accountNumber = accountNumber;
-	}
 	
+	public double getBalance() {
+		return this.balance;
+	}
+
+
+	public double getInterestRate() {
+		return this.interestRate;
+	}
+
 	public boolean withdraw(double amount) {
-		if((amount <= balance) && (amount >=0)){
-			balance -= 0;
+		if ((amount <= balance) && (amount >= 0)) {
+			balance -= amount;
 			return true;
 		} else {
 			return false;
 		}
+
 	}
-	
+
 	public boolean deposit(double amount) {
-		if(amount > 0) {
+		if ((amount > 0)) {
 			balance += amount;
 			return true;
 		} else {
 			return false;
 		}
+
 	}
-	
+
 	public double futureValue(int years) {
-		return balance * Math.pow(1 + intrestRate*100, years);
+		return (balance * (Math.pow((1 + interestRate), years)));
 	}
+
 }
